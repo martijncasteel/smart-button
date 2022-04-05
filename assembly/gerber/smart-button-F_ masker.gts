@@ -1,12 +1,12 @@
 %TF.GenerationSoftware,KiCad,Pcbnew,(6.0.4-0)*%
-%TF.CreationDate,2022-04-04T21:56:53+02:00*%
+%TF.CreationDate,2022-04-05T18:33:42+02:00*%
 %TF.ProjectId,smart-button,736d6172-742d-4627-9574-746f6e2e6b69,rev?*%
 %TF.SameCoordinates,Original*%
 %TF.FileFunction,Soldermask,Top*%
 %TF.FilePolarity,Negative*%
 %FSLAX46Y46*%
 G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
-G04 Created by KiCad (PCBNEW (6.0.4-0)) date 2022-04-04 21:56:53*
+G04 Created by KiCad (PCBNEW (6.0.4-0)) date 2022-04-05 18:33:42*
 %MOMM*%
 %LPD*%
 G01*
