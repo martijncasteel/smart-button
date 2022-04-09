@@ -6,7 +6,7 @@
 
 #ifndef LIGHT_H_
 #define LIGHT_H_
-#include "light.h"
+#include "source/light.h"
 #endif
 
 #ifndef SMART_BUTTON_H_

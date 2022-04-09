@@ -1,4 +1,4 @@
-#include "smart-button.h"
+#include "../smart-button.h"
 
 /**
  * @file elgato-lights.cpp
@@ -75,7 +75,6 @@ class ElgatoLight : public Light {
       int code = http.GET();
 
       if ( code != HTTP_CODE_OK ) {
-        Serial.println("Error on sending GET request");
         http.end();
         return false;
       }

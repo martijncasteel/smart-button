@@ -1,7 +1,7 @@
 #include "smart-button.h"
 
-#include "elgato-lights.cpp"
-// #include "hue-lights.cpp"
+#include "source/elgato-lights.cpp"
+#include "source/hue-lights.cpp"
 
 // button order from left to right
 int buttons[3] = { 14, 12, 13 };
@@ -10,10 +10,11 @@ int value = HIGH;
 
 // Available lights to interact with
 Light *keyLight;
-Light *studyLight;
+Light *hueLight;
 
 void setup() {
   Serial.begin(9600);
+  EEPROM.begin(512);
 
   for ( int pin : buttons ) {
     pinMode(pin, INPUT_PULLUP);
@@ -34,9 +35,11 @@ void setup() {
 
   keyLight = new ElgatoLight("http://elgato-key-light-air-1857.local:9123/elgato/lights");
 
-  // retrieve local ip-address and get user      
-  // const char * address = HueLight::connect();
-  // studyLight = new HueLight(address, HUE_USER, 4);
+  // retrieve local ip-address and get user
+  address_t bridge = HueLight::connect(HUE_BRIDGE, LED_BUILTIN, buttons[0]);
+  hueLight = new HueLight(bridge, 10); //4
+
+  Serial.println("lights initialized!");
 }
 
 void loop() {
@@ -49,7 +52,8 @@ void loop() {
 
     if ( state[0] == LOW ) {
       Serial.println("button 0 pressed");
-      keyLight->toggle();
+      // keyLight->toggle();
+      hueLight->toggle();
     }
   }
 
