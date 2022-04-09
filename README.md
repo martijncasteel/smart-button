@@ -2,7 +2,7 @@
 Simple shield for Nodemcu v3 with three cherrymx buttons. The different buttons can control Elgato lights or Hue Lights. This project came forward out the necesity of having a button to control a Elgato keylight without having to use their app.
 
 ## Usage
-Start by setting up [source/secrets.h](code/smart-button/source/secrets.h.example) with your wifi credentials and bridge ip-address if you want to add Hue lights. Adjust your smart-button.ino as you wish to use, below some information on setting up the different lights. 
+Start by setting up [source/secrets.h](code/smart-button/secrets.h.example) with your wifi credentials and bridge ip-address if you want to add Hue lights. Adjust your smart-button.ino as you wish to use, below some information on setting up the different lights. 
 
 ### Elgato Keylight
 Controlling a Elgato keylight can be done with the following;
