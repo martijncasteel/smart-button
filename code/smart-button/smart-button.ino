@@ -11,7 +11,6 @@ int value = HIGH;
 
 // Available lights to interact with
 Light *keyLight;
-Light *hueLight;
 
 void setup() {
   Serial.begin(9600);
@@ -35,12 +34,6 @@ void setup() {
   Serial.println("connected to wifi!");
 
   keyLight = new ElgatoLight("http://elgato-key-light-air-1857.local:9123/elgato/lights");
-
-  // retrieve local ip-address and get user
-  // address_t bridge = HueLight::connect(HUE_BRIDGE, LED_BUILTIN, buttons[0]); // move struct to shared place?
-  // hueLight = new HueLight(bridge, 10); //4
-  // hueLight = new HueGroup(bridge, 7);
-
   Serial.println("lights initialized!");
 }
 
@@ -55,7 +48,6 @@ void loop() {
     if ( state[0] == LOW ) {
       Serial.println("button 0 pressed");
       keyLight->toggle();
-      // hueLight->toggle();
     }
   }
 

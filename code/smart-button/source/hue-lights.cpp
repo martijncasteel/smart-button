@@ -129,11 +129,6 @@ class HueLight : public Light {
       this->state = json["state"]["on"];
       this->brightness = json["state"]["brightness"];
 
-      Serial.print("Huelight state:");
-      Serial.print(this->state);
-      Serial.print(" brightness:");
-      Serial.print(this->brightness);
-
       return true;
     }
 

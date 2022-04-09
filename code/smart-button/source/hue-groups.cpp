@@ -68,11 +68,6 @@ class HueGroup : public Light {
       this->state = json["state"]["all_on"];
       this->brightness = json["action"]["bri"];
 
-      Serial.print("Huegroup state:");
-      Serial.print(this->state);
-      Serial.print(" brightness:");
-      Serial.print(this->brightness);
-
       return true;
     }
 
