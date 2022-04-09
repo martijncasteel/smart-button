@@ -2,6 +2,7 @@
 
 #include "source/elgato-lights.cpp"
 #include "source/hue-lights.cpp"
+#include "source/hue-groups.cpp"
 
 // button order from left to right
 int buttons[3] = { 14, 12, 13 };
@@ -36,8 +37,9 @@ void setup() {
   keyLight = new ElgatoLight("http://elgato-key-light-air-1857.local:9123/elgato/lights");
 
   // retrieve local ip-address and get user
-  address_t bridge = HueLight::connect(HUE_BRIDGE, LED_BUILTIN, buttons[0]);
-  hueLight = new HueLight(bridge, 10); //4
+  // address_t bridge = HueLight::connect(HUE_BRIDGE, LED_BUILTIN, buttons[0]); // move struct to shared place?
+  // hueLight = new HueLight(bridge, 10); //4
+  // hueLight = new HueGroup(bridge, 7);
 
   Serial.println("lights initialized!");
 }
@@ -52,8 +54,8 @@ void loop() {
 
     if ( state[0] == LOW ) {
       Serial.println("button 0 pressed");
-      // keyLight->toggle();
-      hueLight->toggle();
+      keyLight->toggle();
+      // hueLight->toggle();
     }
   }
 

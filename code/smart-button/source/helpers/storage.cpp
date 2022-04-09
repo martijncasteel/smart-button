@@ -9,6 +9,9 @@
  * 
  */
 
+#ifndef STORAGE_H
+#define STORAGE_H
+
 class Storage {
   public:
     static String read_string_from_eeprom(int address) {
@@ -33,3 +36,5 @@ class Storage {
       }
     }
 };
+
+#endif

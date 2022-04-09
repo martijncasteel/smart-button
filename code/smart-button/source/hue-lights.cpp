@@ -9,17 +9,6 @@
  * stores it in EEPROM, the account can be used for multiple lights.
  */
 
-struct address_t {
-  String address;
-  String user;
-  int id = 0;
-
-  String toString(String action = "") {
-    return String("http://") + address + "/api/" + user + "/lights/" + String(id) + "/" + action;
-  }
-};
-
-
 class HueLight : public Light {
   public:
     HueLight(address_t address, int id) : Light() {
@@ -47,7 +36,9 @@ class HueLight : public Light {
         }
 
         JSONVar json;
-        json["devicetype"] = "smart-button#" + WiFi.macAddress();
+        String name = WiFi.macAddress();
+        name.replace(":", "");
+        json["devicetype"] = "smart-button#" + name;
 
         // create user
         http.begin(client, "http://" + String(address) + "/api");
@@ -79,19 +70,17 @@ class HueLight : public Light {
         }
 
         // if structure not found, hard crash will occur
-        // user = json[0]["success"]["username"]; TODO fix this
-        Serial.println(user);
+        const char * c_user = json[0]["success"]["username"];
+        Storage::write_string_to_eeprom(0, c_user);
 
-        // Storage::write_string_to_eeprom(0, user);
+        user = String(c_user);
       }
 
-      address_t a{ String(address), user, 0 };
+      address_t a{ String(address), user };
       return a;
     }
 
     bool toggle() {
-      Serial.println(this->address.toString("state"));
-
       JSONVar json;
       json["on"] = !this->state;
 

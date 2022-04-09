@@ -14,3 +14,14 @@ class Light {
     bool state = false;
     int brightness; // 3-100
 };
+
+struct address_t {
+  String address;
+  String user;
+  String element = "lights";
+  int id = 0;
+
+  String toString(String action = "") {
+    return String("http://") + address + "/api/" + user + "/" + element + "/" + String(id) + "/" + action;
+  }
+};
