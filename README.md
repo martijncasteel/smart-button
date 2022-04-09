@@ -2,7 +2,7 @@
 Simple shield for Nodemcu v3 with three cherrymx buttons. The different buttons can control Elgato lights or Hue Lights. This project came forward out the necesity of having a button to control a Elgato keylight without having to use their app.
 
 ## Usage
-Start by setting up [source/secrets.h]('source/secrets.h.example') with your wifi credentials and bridge ip-address if you want to add Hue lights. Adjust your smart-button.ino as you wish to use, below some information on setting up the different lights. 
+Start by setting up [source/secrets.h](source/secrets.h.example) with your wifi credentials and bridge ip-address if you want to add Hue lights. Adjust your smart-button.ino as you wish to use, below some information on setting up the different lights. 
 
 ### Elgato Keylight
 Controlling a Elgato keylight can be done with the following;
@@ -27,4 +27,11 @@ Controlling a Hue light is a little bit more complex, the device needs to create
 ```
 
 ## Shield
+![pcb-front](https://user-images.githubusercontent.com/5732642/162588144-cc8d41fe-5cd6-4b2c-abec-196f9c342f36.jpg)
 
+A simple shield made using Kicad to give it a nice aesthetic, you can also use a simple breadboard with simple buttons. The pins use an interal pull-up resistor. When the pin is connected to ground the button is pressed. You can find the source in [pcb](pcb/) and the assembly in [assembly](assembly/) to send to your preferred manufacturer.
+
+![3d-model-back](https://user-images.githubusercontent.com/5732642/162588176-d12c8e48-85e3-4166-9ebd-bdde503ee828.jpg)
+
+## License
+This project is licensed under the MIT license. See [LICENSE](LICENSE.md) for more information.
