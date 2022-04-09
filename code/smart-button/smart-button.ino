@@ -10,8 +10,9 @@ int state[3] = { HIGH, HIGH, HIGH };
 int value = HIGH;
 
 // Available lights to interact with
-Light *keyLight;
-Light *hueLight;
+Light *tvLight;
+Light *tableLight;
+Light *closetLight;
 
 void setup() {
   Serial.begin(9600);
@@ -34,12 +35,12 @@ void setup() {
   digitalWrite(LED_BUILTIN, HIGH); 
   Serial.println("connected to wifi!");
 
-  keyLight = new ElgatoLight("http://elgato-key-light-air-1857.local:9123/elgato/lights");
-
   // retrieve local ip-address and get user
-  // address_t bridge = HueLight::connect(HUE_BRIDGE, LED_BUILTIN, buttons[0]); // move struct to shared place?
-  // hueLight = new HueLight(bridge, 10); //4
-  // hueLight = new HueGroup(bridge, 7);
+  address_t bridge = HueLight::connect(HUE_BRIDGE, LED_BUILTIN, buttons[0]); // move struct to shared place?
+
+  tvLight = new HueGroup(bridge, 7); // 4 with staande lamp
+  tableLight = new HueGroup(bridge, 3);
+  closetLight = new HueGroup(bridge, 2);
 
   Serial.println("lights initialized!");
 }
@@ -54,8 +55,7 @@ void loop() {
 
     if ( state[0] == LOW ) {
       Serial.println("button 0 pressed");
-      keyLight->toggle();
-      // hueLight->toggle();
+      tvLight->toggle();
     }
   }
 
@@ -67,7 +67,7 @@ void loop() {
     // Increase brightness of key light
     if ( state[1] == LOW ) {
       Serial.println("button 1 pressed");
-      keyLight->set(keyLight->brightness + 10);
+      tableLight->toggle();
     }
   }
 
@@ -78,7 +78,7 @@ void loop() {
 
     if ( state[2] == LOW ) {
       Serial.println("button 2 pressed");
-      keyLight->set(keyLight->brightness - 10);
+      closetLight->toggle();
     }
   }
 }
