@@ -13,7 +13,7 @@ int value = HIGH;
 Light *keyLight;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   EEPROM.begin(512);
 
   for ( int pin : buttons ) {
@@ -73,4 +73,6 @@ void loop() {
       keyLight->set(keyLight->brightness - 10);
     }
   }
+
+  delay(50);
 }
