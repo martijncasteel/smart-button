@@ -15,7 +15,7 @@ Light *tableLight;
 Light *brorLight;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   EEPROM.begin(512);
 
   for ( int pin : buttons ) {
@@ -81,4 +81,6 @@ void loop() {
       brorLight->toggle();
     }
   }
+
+  delay(50);
 }

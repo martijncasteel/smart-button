@@ -16,6 +16,11 @@ class Storage {
   public:
     static String read_string_from_eeprom(int address) {
       int length = EEPROM.read(address);
+      
+      if ( length > 50 ) {
+        return "";
+      }
+
       char data[length + 1];
 
       for ( int i = 0; i < length; i++ ) {
@@ -28,12 +33,14 @@ class Storage {
 
     static void write_string_to_eeprom(int address, const char * string) {
       int length = strlen(string);
-
       EEPROM.write(address, length);
 
       for (int i = 0; i < length; i++) {
         EEPROM.write(address + i + 1, string[i]);
       }
+
+      // required for the ESP8266
+      EEPROM.commit();
     }
 };
 
