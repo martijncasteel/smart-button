@@ -7,12 +7,12 @@
 // button order from left to right
 int buttons[3] = { 14, 12, 13 };
 int state[3] = { HIGH, HIGH, HIGH };
-int value = HIGH;
+int value;
 
 // Available lights to interact with
 Light *tvLight;
 Light *tableLight;
-Light *closetLight;
+Light *brorLight;
 
 void setup() {
   Serial.begin(9600);
@@ -40,7 +40,7 @@ void setup() {
 
   tvLight = new HueGroup(bridge, 7); // 4 with staande lamp
   tableLight = new HueGroup(bridge, 3);
-  closetLight = new HueGroup(bridge, 2);
+  brorLight = new HueGroup(bridge, 2);
 
   Serial.println("lights initialized!");
 }
@@ -78,7 +78,7 @@ void loop() {
 
     if ( state[2] == LOW ) {
       Serial.println("button 2 pressed");
-      closetLight->toggle();
+      brorLight->toggle();
     }
   }
 }
