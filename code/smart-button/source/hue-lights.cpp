@@ -22,8 +22,9 @@ class HueLight : public Light {
     // find ip address, create user and store in eeprom, return full url
     static address_t connect(char * address, int led, int button) {
       String user = Storage::read_string_from_eeprom(0);
+      Serial.println(user);
 
-      if ( user == NULL ) {
+      if ( user == NULL || user == "" ) {
 
         Serial.println("Push button on Hue bridge and press SW1 to continue...");
 
@@ -72,8 +73,10 @@ class HueLight : public Light {
         // if structure not found, hard crash will occur
         const char * c_user = json[0]["success"]["username"];
         Storage::write_string_to_eeprom(0, c_user);
-
         user = String(c_user);
+
+        Serial.print("User created: ");
+        Serial.println(user);
       }
 
       address_t a{ String(address), user };
