@@ -6,11 +6,13 @@
 
 // button order from left to right
 int buttons[3] = { 14, 12, 13 };
-int state[3] = { HIGH, HIGH, HIGH };
-int value = HIGH;
+int state[3] = { HIGH, LOW, LOW };
+
+int value;
 
 // Available lights to interact with
 Light *keyLight;
+uint step = 5;
 
 void setup() {
   Serial.begin(115200);
@@ -51,27 +53,50 @@ void loop() {
     }
   }
 
+  // increase brigtness of keylight
   value = digitalRead(buttons[1]);
 
+  // state is changed
   if ( value != state[1] ) {
     state[1] = value;
 
     // Increase brightness of key light
-    if ( state[1] == LOW ) {
+    if ( state[1] == HIGH ) {
+      Serial.println("button 1 released");
+
+    // started pressing button down
+    } else { 
       Serial.println("button 1 pressed");
-      keyLight->set(keyLight->brightness + 10);
+      keyLight->set(keyLight->brightness + step);
     }
+
+  // button is still pressed
+  } else if ( value == LOW ) { 
+    Serial.println("button 1 pressed");
+    keyLight->set(keyLight->brightness + step);
   }
 
   // Decrease brightness of key light
   value = digitalRead(buttons[2]);
-  if ( value != state[2] ) {
-    state[2] = value;
+  
+  // state is changed
+  if ( value != state[1] ) {
+    state[1] = value;
 
-    if ( state[2] == LOW ) {
-      Serial.println("button 2 pressed");
-      keyLight->set(keyLight->brightness - 10);
+    // Increase brightness of key light
+    if ( state[1] == HIGH ) {
+      Serial.println("button 1 released");
+
+    // started pressing button down
+    } else { 
+      Serial.println("button 1 pressed");
+      keyLight->set(keyLight->brightness - step);
     }
+
+  // button is still pressed
+  } else if ( value == LOW ) { 
+    Serial.println("button 1 pressed");
+    keyLight->set(keyLight->brightness - step);
   }
 
   delay(50);
